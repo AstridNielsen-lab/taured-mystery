@@ -1,6 +1,14 @@
-import { LocationData, ToolData, Location, Tool, Clue } from '@/types/game'
+import { LocationData, ToolData, Location, Tool, Clue, EndingCondition, Investigation } from '@/types/game'
 
-export const gameData = {
+interface GameData {
+  locations: Record<Location, LocationData>
+  tools: Record<Tool, ToolData>
+  endings: Record<string, EndingCondition>
+  clues: Record<string, Clue>
+  investigations: Record<string, Investigation>
+}
+
+export const gameData: GameData = {
   locations: {
     orion_base: {
       id: 'orion_base' as Location,
@@ -271,17 +279,17 @@ export const formatTool = (tool: Tool): string => {
   return gameData.tools[tool]?.name || tool
 }
 
-export const getAvailableLocations = (gameState: any, clues: Clue[]) => {
+export const getAvailableLocations = (gameState: any, clues: Clue[]): LocationData[] => {
   return Object.values(gameData.locations).filter(location => {
     if (location.available) return true
     if (location.unlockCondition) {
       return location.unlockCondition(gameState, clues)
     }
     return false
-  })
+  }) as LocationData[]
 }
 
-export const getAvailableTools = (gameState: any, clues: Clue[], playerTools: Record<Tool, boolean>) => {
+export const getAvailableTools = (gameState: any, clues: Clue[], playerTools: Record<Tool, boolean>): ToolData[] => {
   return Object.values(gameData.tools).filter(tool => {
     if (!playerTools[tool.id]) return false
     if (tool.available) return true
@@ -289,6 +297,6 @@ export const getAvailableTools = (gameState: any, clues: Clue[], playerTools: Re
       return tool.unlockCondition(gameState, clues)
     }
     return false
-  })
+  }) as ToolData[]
 }
 
