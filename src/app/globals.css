@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    @apply bg-orion-dark text-green-400;
+  }
+}
+
+@layer components {
+  .terminal-screen {
+    @apply bg-black bg-opacity-90 border border-green-400 rounded-lg p-4 font-mono text-green-400;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+  }
+  
+  .scan-line {
+    @apply absolute w-full h-1 bg-green-400 opacity-30;
+    animation: scan 2s linear infinite;
+  }
+  
+  .flicker {
+    animation: flicker 0.15s linear infinite;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .orion-border {
+    @apply border border-orion-blue;
+    box-shadow: 0 0 10px rgba(30, 58, 138, 0.5);
+  }
+  
+  .hologram {
+    @apply relative;
+  }
+  
+  .hologram::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400 to-transparent opacity-20;
+    animation: hologram 3s ease-in-out infinite;
+  }
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes hologram {
+  0%, 100% { transform: translateY(-100%); }
+  50% { transform: translateY(100%); }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid;
+  white-space: nowrap;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: currentColor; }
+}
+
+.matrix-bg {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(30, 58, 138, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+}
+
+.crt-effect {
+  position: relative;
+}
+
+.crt-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+}
+
+.glitch {
+  position: relative;
+  color: white;
+  font-size: 2rem;
+  letter-spacing: 3px;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  animation: glitch-anim-1 0.2s infinite linear alternate-reverse;
+  color: #ff0040;
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch-anim-2 0.2s infinite linear alternate-reverse;
+  color: #00ffff;
+  z-index: -2;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(42px, 9999px, 44px, 0); }
+  25% { clip: rect(12px, 9999px, 59px, 0); }
+  50% { clip: rect(69px, 9999px, 90px, 0); }
+  75% { clip: rect(35px, 9999px, 71px, 0); }
+  100% { clip: rect(13px, 9999px, 36px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(65px, 9999px, 99px, 0); }
+  25% { clip: rect(52px, 9999px, 74px, 0); }
+  50% { clip: rect(79px, 9999px, 85px, 0); }
+  75% { clip: rect(41px, 9999px, 63px, 0); }
+  100% { clip: rect(26px, 9999px, 55px, 0); }
+}
+
