@@ -355,9 +355,9 @@ ${report.summary}
   })
   
   cluesByCategory.forEach((clues, category) => {
-    formatted += `\n${categories[category] || category.toUpperCase()}:
+    formatted += `\n${categories[category as keyof typeof categories] || category.toUpperCase()}:
 `
-    clues.forEach(clue => {
+    clues.forEach((clue: Clue) => {
       formatted += `  • ${clue.name}: ${clue.description}
 `
     })

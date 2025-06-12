@@ -1,18 +1,18 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Investigation, InvestigationChoice, Clue } from '@/types/game'
+import { Investigation, Choice, Clue } from '@/types/game'
 import { gameData } from '@/utils/gameData'
 
 interface InvestigationModalProps {
   isOpen: boolean
   onClose: () => void
   investigation: Investigation | null
-  onChoiceSelect: (choice: InvestigationChoice) => void
+  onChoiceSelect: (choice: Choice) => void
 }
 
 export function InvestigationModal({ isOpen, onClose, investigation, onChoiceSelect }: InvestigationModalProps) {
-  const [selectedChoice, setSelectedChoice] = useState<InvestigationChoice | null>(null)
+  const [selectedChoice, setSelectedChoice] = useState<Choice | null>(null)
   const [isExecuting, setIsExecuting] = useState(false)
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export function InvestigationModal({ isOpen, onClose, investigation, onChoiceSel
 
   if (!isOpen || !investigation) return null
 
-  const handleChoiceClick = async (choice: InvestigationChoice) => {
+  const handleChoiceClick = async (choice: Choice) => {
     setSelectedChoice(choice)
     setIsExecuting(true)
     
