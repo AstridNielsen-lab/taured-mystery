@@ -30,6 +30,8 @@ export function TerminalOutput({ lines }: TerminalOutputProps) {
       success: 'text-green-400',
       error: 'text-red-400',
       warning: 'text-yellow-400',
+      report: 'text-blue-300',
+      encyclopedia: 'text-purple-300',
     }
     return styles[type] || 'text-green-400'
   }

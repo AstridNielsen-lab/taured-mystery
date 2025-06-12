@@ -1,16 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useGame } from '@/hooks/useGame'
-import { formatLocation, formatTool, getAvailableLocations, getAvailableTools } from '@/utils/gameData'
+import { useSounds } from '@/hooks/useSounds'
+import { LocationPanel } from './LocationPanel'
 import { StatusPanel } from './StatusPanel'
 import { ToolPanel } from './ToolPanel'
-import { LocationPanel } from './LocationPanel'
 import { InvestigationLog } from './InvestigationLog'
 import { TerminalOutput } from './TerminalOutput'
-
+import { getAvailableLocations, getAvailableTools, gameData, formatLocation } from '@/utils/gameData'
+import { generateReport, formatReportForDisplay, generateTauredEncyclopedia } from '@/utils/reportGenerator'
+import { ToolData, Location, Investigation } from '@/types/game'
 export function GameInterface() {
   const { gameState, player, changeLocation, useTool } = useGame()
+  const { playClick, playHover, playSuccess, playError, playNotification, playTyping, playAmbient } = useSounds()
   const [activePanel, setActivePanel] = useState<'tools' | 'locations' | 'log'>('tools')
   const [terminalLines, setTerminalLines] = useState<Array<{id: string, text: string, type: string}>>(
     [
@@ -30,14 +33,43 @@ export function GameInterface() {
   }
 
   const handleLocationChange = (location: any) => {
+    playClick()
     changeLocation(location.id)
     addTerminalLine(`Viajando para: ${location.name}`, 'system')
     addTerminalLine(`Localização atual: ${location.name}`, 'result')
+    playSuccess()
   }
 
   const handleToolUse = (tool: any) => {
-    const result = useTool(tool.id)
     addTerminalLine(`Usando: ${tool.name}`, 'user')
+    
+    if (tool.id === 'report_generator') {
+      const report = generateReport(gameState, player.discoveredClues)
+      const formattedReport = formatReportForDisplay(report)
+      addTerminalLine('Relatório gerado com sucesso:', 'success')
+      // Adiciona o relatório linha por linha para melhor exibição
+      formattedReport.split('\n').forEach((line, index) => {
+        setTimeout(() => {
+          addTerminalLine(line, 'report')
+        }, index * 50) // Adiciona linhas com pequeno delay para efeito de digitação
+      })
+      return
+    }
+    
+    if (tool.id === 'encyclopedia') {
+      const encyclopedia = generateTauredEncyclopedia()
+      addTerminalLine('Enciclopédia de Taured carregada:', 'success')
+      // Adiciona a enciclopédia linha por linha
+      encyclopedia.split('\n').forEach((line, index) => {
+        setTimeout(() => {
+          addTerminalLine(line, 'encyclopedia')
+        }, index * 30) // Delay menor para a enciclopédia
+      })
+      return
+    }
+    
+    // Para outras ferramentas, usa a lógica padrão
+    const result = useTool(tool.id)
     addTerminalLine(result.message, result.success ? 'success' : 'error')
   }
 
@@ -58,8 +90,12 @@ export function GameInterface() {
               ].map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActivePanel(tab.id as any)}
-                  className={`px-3 py-2 text-sm border transition-colors ${
+                  onClick={() => {
+                    playClick()
+                    setActivePanel(tab.id as any)
+                  }}
+                  onMouseEnter={playHover}
+                  className={`px-3 py-2 text-sm border transition-colors clickable ${
                     activePanel === tab.id
                       ? 'border-orion-blue bg-orion-blue bg-opacity-20 text-white'
                       : 'border-green-400 text-green-400 hover:border-orion-blue'

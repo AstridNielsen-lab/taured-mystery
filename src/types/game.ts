@@ -5,6 +5,7 @@ export interface GameState {
   conspiracyLevel: number; // 0 a 100
   playerSanity: number; // 100 a 0
   timelineDistortion: number; // 0 a 100
+  identityCrisis: number; // 0 a 100
 }
 
 export interface Player {
@@ -30,7 +31,12 @@ export type ClueCategory =
   | 'witness'
   | 'document'
   | 'artifact'
-  | 'temporal';
+  | 'temporal'
+  | 'evidence'
+  | 'analysis'
+  | 'theory'
+  | 'cases'
+  | 'identity';
 
 export interface LogEntry {
   id: string;
@@ -60,7 +66,9 @@ export type Tool =
   | 'expanded_reality'
   | 'orion_net'
   | 'contradiction_detector'
-  | 'portable_lab';
+  | 'portable_lab'
+  | 'report_generator'
+  | 'encyclopedia';
 
 export interface LocationData {
   id: Location;

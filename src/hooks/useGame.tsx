@@ -30,6 +30,7 @@ const initialGameState: GameState = {
   conspiracyLevel: 0,
   playerSanity: 100,
   timelineDistortion: 0,
+  identityCrisis: 0,
 }
 
 const initialPlayer: Player = {
@@ -47,6 +48,8 @@ const initialPlayer: Player = {
     orion_net: true,
     contradiction_detector: true,
     portable_lab: true,
+    report_generator: true,
+    encyclopedia: true,
   },
 }
 

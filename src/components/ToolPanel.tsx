@@ -19,6 +19,8 @@ export function ToolPanel({ tools, onToolUse }: ToolPanelProps) {
       orion_net: '🌐',
       contradiction_detector: '🔍',
       portable_lab: '🧪',
+      report_generator: '📊',
+      encyclopedia: '📚',
     }
     return icons[toolId] || '🔧'
   }
@@ -36,7 +38,7 @@ export function ToolPanel({ tools, onToolUse }: ToolPanelProps) {
           <button
             key={tool.id}
             onClick={() => onToolUse(tool)}
-            className="w-full text-left p-3 border border-green-400 rounded hover:border-orion-blue hover:bg-orion-blue hover:bg-opacity-20 transition-all duration-200 group"
+            className="w-full text-left p-3 border border-green-400 rounded hover:border-orion-blue hover:bg-orion-blue hover:bg-opacity-20 transition-all duration-200 group clickable"
           >
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center space-x-2">

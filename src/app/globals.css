@@ -7,9 +7,62 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: none; /* Remove cursor padrão */
   }
   body {
     @apply bg-orion-dark text-green-400;
+    cursor: none;
+    overflow-x: hidden;
+  }
+  
+  /* Cursor personalizado */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #00ffff 0%, #0099cc 50%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    box-shadow: 
+      0 0 10px #00ffff,
+      0 0 20px #00ffff,
+      0 0 30px #00ffff;
+    animation: cursor-pulse 2s infinite;
+  }
+  
+  .custom-cursor::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid #00ffff;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: cursor-ring 1.5s infinite;
+  }
+  
+  .custom-cursor.clicking {
+    transform: scale(1.5);
+    background: radial-gradient(circle, #ffff00 0%, #ff9900 50%, transparent 70%);
+    box-shadow: 
+      0 0 15px #ffff00,
+      0 0 25px #ffff00,
+      0 0 35px #ffff00;
+  }
+  
+  .custom-cursor.hovering {
+    transform: scale(1.2);
+    background: radial-gradient(circle, #ff00ff 0%, #cc00cc 50%, transparent 70%);
+    box-shadow: 
+      0 0 12px #ff00ff,
+      0 0 22px #ff00ff,
+      0 0 32px #ff00ff;
   }
 }
 
@@ -153,5 +206,58 @@
   50% { clip: rect(79px, 9999px, 85px, 0); }
   75% { clip: rect(41px, 9999px, 63px, 0); }
   100% { clip: rect(26px, 9999px, 55px, 0); }
+}
+
+/* Animações do cursor personalizado */
+@keyframes cursor-pulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes cursor-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Estilos para elementos clicáveis */
+button, a, .clickable {
+  transition: all 0.2s ease;
+}
+
+button:hover, a:hover, .clickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+/* Efeitos sonoros visuais */
+.sound-wave {
+  position: absolute;
+  border: 2px solid #00ffff;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sound-ripple 0.6s ease-out;
+}
+
+@keyframes sound-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
