@@ -1,5 +1,9 @@
 # 🌌 O Enigma de Taured - Jogo de Investigação Interdimensional
 
+![image](https://github.com/user-attachments/assets/5d0fda72-f3b2-4806-9d12-b151a0320c82)
+![image](https://github.com/user-attachments/assets/f63d6d45-42cf-47b9-9b2a-fa41c5658fa4)
+![image](https://github.com/user-attachments/assets/b7e187e3-e9f2-4367-b887-6d868206343d)
+
 ## 🖥️ **NOVA ATUALIZAÇÃO: Terminal Central ORION!**
 
 ### ⚡ **Revolução Completa na Investigação!**
