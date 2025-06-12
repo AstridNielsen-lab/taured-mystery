@@ -1,6 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import { CaseFilesModal } from './CaseFilesModal'
+import { SettingsModal } from './SettingsModal'
+import { AboutOrionModal } from './AboutOrionModal'
 
 interface MainMenuProps {
   onStartGame: () => void
@@ -8,12 +11,15 @@ interface MainMenuProps {
 
 export function MainMenu({ onStartGame }: MainMenuProps) {
   const [selectedOption, setSelectedOption] = useState(0)
+  const [caseFilesOpen, setCaseFilesOpen] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false)
+  const [aboutOrionOpen, setAboutOrionOpen] = useState(false)
   
   const menuOptions = [
     { label: 'INICIAR INVESTIGAÇÃO', action: onStartGame },
-    { label: 'ARQUIVOS DE CASOS', action: () => alert('Em desenvolvimento') },
-    { label: 'CONFIGURAÇÕES', action: () => alert('Em desenvolvimento') },
-    { label: 'SOBRE A ORION', action: () => alert('Unidade ORION - Investigação de Anomalias Interdimensionais') },
+    { label: 'ARQUIVOS DE CASOS', action: () => setCaseFilesOpen(true) },
+    { label: 'CONFIGURAÇÕES', action: () => setSettingsOpen(true) },
+    { label: 'SOBRE A ORION', action: () => setAboutOrionOpen(true) },
   ]
 
   return (
@@ -95,6 +101,22 @@ export function MainMenu({ onStartGame }: MainMenuProps) {
         <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-mystery-purple rounded-full blur-3xl opacity-10 animate-pulse-slow"></div>
         <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-taured-gold rounded-full blur-2xl opacity-15 animate-pulse-slow"></div>
       </div>
+      
+      {/* Modais */}
+      <CaseFilesModal 
+        isOpen={caseFilesOpen} 
+        onClose={() => setCaseFilesOpen(false)} 
+      />
+      
+      <SettingsModal 
+        isOpen={settingsOpen} 
+        onClose={() => setSettingsOpen(false)} 
+      />
+      
+      <AboutOrionModal 
+        isOpen={aboutOrionOpen} 
+        onClose={() => setAboutOrionOpen(false)} 
+      />
     </div>
   )
 }
