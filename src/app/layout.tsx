@@ -2,7 +2,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Orbitron } from 'next/font/google'
 import { GameProvider } from '@/hooks/useGame'
-import { CustomCursor } from '@/components/CustomCursor'
 import { AIAssistant } from '@/components/AIAssistant'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -31,7 +30,6 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-orion-dark text-green-400 font-mono overflow-hidden`}>
         <GameProvider>
-          <CustomCursor />
           <div className="min-h-screen bg-gradient-to-br from-orion-dark via-gray-900 to-black">
             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
             <div className="relative z-10">

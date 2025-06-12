@@ -74,10 +74,10 @@ export function GameInterface() {
   }
 
   return (
-    <div className="min-h-screen bg-orion-dark text-green-400 p-4">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4 h-screen">
+    <div className="min-h-screen bg-orion-dark text-green-400 p-2 sm:p-4">
+      <div className="w-full max-w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 min-h-screen">
         {/* Painel de Status - Esquerda */}
-        <div className="col-span-3 space-y-4">
+        <div className="lg:col-span-3 space-y-2 sm:space-y-4">
           <StatusPanel gameState={gameState} player={player} />
           
           {/* Navegação de painéis */}
@@ -107,7 +107,7 @@ export function GameInterface() {
             </div>
             
             {/* Conteúdo do painel ativo */}
-            <div className="h-96 overflow-y-auto">
+            <div className="h-64 sm:h-80 lg:h-96 overflow-y-auto">
               {activePanel === 'tools' && (
                 <ToolPanel 
                   tools={getAvailableTools(gameState, player.discoveredClues, player.toolsAvailable)}
@@ -129,12 +129,12 @@ export function GameInterface() {
         </div>
 
         {/* Terminal Principal - Centro */}
-        <div className="col-span-6">
+        <div className="lg:col-span-6">
           <TerminalOutput lines={terminalLines} />
         </div>
 
         {/* Painel de Investigação - Direita */}
-        <div className="col-span-3">
+        <div className="lg:col-span-3">
           <div className="terminal-screen h-full">
             <div className="border-b border-green-400 pb-2 mb-4">
               <h3 className="text-orion-blue font-bold">📍 LOCALIZAÇÃO ATUAL</h3>
