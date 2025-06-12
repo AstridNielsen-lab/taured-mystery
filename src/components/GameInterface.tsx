@@ -8,6 +8,7 @@ import { StatusPanel } from './StatusPanel'
 import { ToolPanel } from './ToolPanel'
 import { InvestigationLog } from './InvestigationLog'
 import { TerminalOutput } from './TerminalOutput'
+import { CentralTerminal } from './CentralTerminal'
 import { AIAssistant } from './AIAssistant'
 import { getAvailableLocations, getAvailableTools, gameData, formatLocation } from '@/utils/gameData'
 import { generateReport, formatReportForDisplay, generateTauredEncyclopedia } from '@/utils/reportGenerator'
@@ -129,9 +130,11 @@ export function GameInterface() {
           </div>
         </div>
 
-        {/* Terminal Principal - Centro */}
+        {/* Terminal Central ORION - Centro */}
         <div className="lg:col-span-6">
-          <TerminalOutput lines={terminalLines} />
+          <div className="terminal-screen h-full">
+            <CentralTerminal />
+          </div>
         </div>
 
         {/* Painel de Investigação - Direita */}
