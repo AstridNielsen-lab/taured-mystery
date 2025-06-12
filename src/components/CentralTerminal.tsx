@@ -189,13 +189,13 @@ export function CentralTerminal() {
     setTerminalLines(prev => [...prev, newLine])
   }
 
-  const navigateToPath = (path: string[]): FileSystemNode | null => {
+  const navigateToPath = (path: string[]): { [key: string]: FileSystemNode } | null => {
     if (path.length <= 2) return null // C:\ORION é a raiz
     
-    let current: any = fileSystem
+    let current: { [key: string]: FileSystemNode } = fileSystem
     for (let i = 2; i < path.length; i++) {
-      if (current[path[i]]) {
-        current = current[path[i]].type === 'directory' ? current[path[i]].children : current[path[i]]
+      if (current[path[i]] && current[path[i]].type === 'directory' && current[path[i]].children) {
+        current = current[path[i]].children as { [key: string]: FileSystemNode }
       } else {
         return null
       }
@@ -319,8 +319,8 @@ export function CentralTerminal() {
         
       case 'cat':
         if (args[1]) {
-          const currentDir = navigateToPath(currentPath)
-          const file = currentDir?.[args[1]] || fileSystem[args[1]]
+          const currentDir = navigateToPath(currentPath) as { [key: string]: FileSystemNode } | null
+          const file = (currentDir && currentDir[args[1]]) || fileSystem[args[1]]
           if (file && file.type === 'file' && file.content) {
             file.content.split('\n').forEach(line => {
               addOutput(line, 'output')
@@ -472,7 +472,7 @@ export function CentralTerminal() {
       
       <div className="flex items-center space-x-2">
         <span className="text-yellow-400 font-mono text-sm whitespace-nowrap">
-          PS {getCurrentDirectory()}>
+          PS {getCurrentDirectory()}{'>'}
         </span>
         <input
           ref={inputRef}
