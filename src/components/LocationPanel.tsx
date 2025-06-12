@@ -1,6 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { LocationData, Location } from '@/types/game'
+import { useSounds } from '@/hooks/useSounds'
+import { InvestigationModal } from './InvestigationModal'
+import { gameData } from '@/utils/gameData'
 
 interface LocationPanelProps {
   locations: LocationData[]
@@ -9,10 +13,20 @@ interface LocationPanelProps {
 }
 
 export function LocationPanel({ locations, currentLocation, onLocationChange }: LocationPanelProps) {
+  const { playClick, playHover } = useSounds()
+  const [investigationModalOpen, setInvestigationModalOpen] = useState(false)
+  const [selectedLocation, setSelectedLocation] = useState<LocationData | null>(null)
+
+  const handleInvestigateLocation = (location: LocationData) => {
+    playClick()
+    setSelectedLocation(location)
+    setInvestigationModalOpen(true)
+  }
+
   const getLocationIcon = (locationId: string) => {
     const icons: Record<string, string> = {
       orion_base: '🏢',
-      tokyo_airport_1954: '🛫',
+      tokyo_airport_1954: '✈️',
       hotel_room: '🏨',
       government_archive: '🏛️',
       paris_cafe: '☕',
@@ -27,7 +41,7 @@ export function LocationPanel({ locations, currentLocation, onLocationChange }: 
     if (locationId === currentLocation) {
       return { text: 'ATUAL', color: 'text-green-400', bg: 'bg-green-900' }
     }
-    return { text: 'VIAJAR', color: 'text-blue-400', bg: 'bg-blue-900' }
+    return { text: 'DISPONÍVEL', color: 'text-blue-400', bg: 'bg-blue-900' }
   }
 
   return (
@@ -44,25 +58,21 @@ export function LocationPanel({ locations, currentLocation, onLocationChange }: 
           const isCurrent = location.id === currentLocation
           
           return (
-            <button
+            <div 
               key={location.id}
-              onClick={() => !isCurrent && onLocationChange(location)}
-              disabled={isCurrent}
               className={`
-                w-full text-left p-3 border rounded transition-all duration-200 group
+                border rounded transition-all duration-200 p-3 space-y-2
                 ${
                   isCurrent
-                    ? 'border-green-400 bg-green-900 bg-opacity-30 cursor-default'
-                    : 'border-green-400 hover:border-orion-blue hover:bg-orion-blue hover:bg-opacity-20 cursor-pointer'
+                    ? 'border-green-400 bg-green-900 bg-opacity-30'
+                    : 'border-green-400'
                 }
               `}
             >
-              <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <span className="text-lg">{getLocationIcon(location.id)}</span>
-                  <span className={`font-medium ${
-                    isCurrent ? 'text-green-400' : 'text-green-400 group-hover:text-white'
-                  }`}>
+                  <span className="font-medium text-green-400">
                     {location.name}
                   </span>
                 </div>
@@ -71,18 +81,32 @@ export function LocationPanel({ locations, currentLocation, onLocationChange }: 
                 </span>
               </div>
               
-              <div className={`text-xs ${
-                isCurrent ? 'text-green-300' : 'text-green-300 group-hover:text-green-100'
-              }`}>
+              <div className="text-xs text-green-300">
                 {location.description}
               </div>
               
-              {!isCurrent && (
-                <div className="text-xs text-gray-400 mt-1 group-hover:text-gray-300">
-                  Clique para viajar para este local
-                </div>
-              )}
-            </button>
+              <div className="flex space-x-2 pt-2">
+                {!isCurrent && (
+                  <button
+                    onClick={() => {
+                      playClick()
+                      onLocationChange(location)
+                    }}
+                    onMouseEnter={playHover}
+                    className="flex-1 px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs rounded transition-colors clickable"
+                  >
+                    🚀 Viajar
+                  </button>
+                )}
+                <button
+                  onClick={() => handleInvestigateLocation(location)}
+                  onMouseEnter={playHover}
+                  className="flex-1 px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white text-xs rounded transition-colors clickable"
+                >
+                  🔍 Investigar
+                </button>
+              </div>
+            </div>
           )
         })
       )}
@@ -90,7 +114,7 @@ export function LocationPanel({ locations, currentLocation, onLocationChange }: 
       {/* Informações adicionais */}
       <div className="mt-4 space-y-2">
         <div className="p-2 bg-gray-800 bg-opacity-50 rounded text-xs text-gray-400">
-          💡 <strong>Dica:</strong> Cada local pode conter pistas únicas e oportunidades de investigação.
+          💡 <strong>Dica:</strong> Use "Investigar" para descobrir pistas específicas em cada local. Use "Viajar" para mudar sua localização atual.
         </div>
         
         {locations.some(loc => loc.id === 'temporal_portal') && (
@@ -99,6 +123,21 @@ export function LocationPanel({ locations, currentLocation, onLocationChange }: 
           </div>
         )}
       </div>
+      
+      {/* Investigation Modal */}
+      <InvestigationModal
+        isOpen={investigationModalOpen}
+        onClose={() => {
+          setInvestigationModalOpen(false)
+          setSelectedLocation(null)
+        }}
+        investigation={selectedLocation ? gameData.investigations[selectedLocation.id] || null : null}
+        onChoiceSelect={(choice) => {
+          playClick()
+          console.log('Investigation choice selected:', choice)
+          // Aqui você pode processar o resultado da investigação
+        }}
+      />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter, Orbitron } from 'next/font/google'
 import { GameProvider } from '@/hooks/useGame'
 import { AIAssistant } from '@/components/AIAssistant'
+import { CustomCursor } from '@/components/CustomCursor'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const orbitron = Orbitron({ subsets: ['latin'], variable: '--font-orbitron' })
@@ -28,7 +29,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
       </head>
-      <body className={`${inter.className} bg-orion-dark text-green-400 font-mono overflow-hidden`}>
+      <body className={`${inter.className} bg-orion-dark text-green-400 font-mono overflow-hidden`} style={{ cursor: 'none' }}>
         <GameProvider>
           <div className="min-h-screen bg-gradient-to-br from-orion-dark via-gray-900 to-black">
             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
@@ -37,6 +38,7 @@ export default function RootLayout({
             </div>
           </div>
           <AIAssistant />
+          <CustomCursor />
         </GameProvider>
       </body>
     </html>

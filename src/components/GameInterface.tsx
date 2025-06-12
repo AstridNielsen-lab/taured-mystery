@@ -8,6 +8,7 @@ import { StatusPanel } from './StatusPanel'
 import { ToolPanel } from './ToolPanel'
 import { InvestigationLog } from './InvestigationLog'
 import { TerminalOutput } from './TerminalOutput'
+import { AIAssistant } from './AIAssistant'
 import { getAvailableLocations, getAvailableTools, gameData, formatLocation } from '@/utils/gameData'
 import { generateReport, formatReportForDisplay, generateTauredEncyclopedia } from '@/utils/reportGenerator'
 import { ToolData, Location, Investigation } from '@/types/game'
@@ -196,6 +197,9 @@ export function GameInterface() {
           </div>
         </div>
       </div>
+      
+      {/* AI Assistant */}
+      <AIAssistant gameState={gameState} discoveredClues={player.discoveredClues} />
     </div>
   )
 }
