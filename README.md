@@ -1,8 +1,58 @@
 # 🌌 O Enigma de Taured - Jogo de Investigação Interdimensional
 
-Um jogo interativo de investigação baseado no misterioso caso real do "Homem de Taured" de 1954. Você é um agente da unidade ultra-secreta ORION, investigando um dos mistérios mais intrigantes do século XX.
+## 🖥️ **NOVA ATUALIZAÇÃO: Terminal Central ORION!**
 
-## ✨ FUNCIONALIDADES IMPLEMENTADAS
+### ⚡ **Revolução Completa na Investigação!**
+O jogo foi **completamente transformado** com um **Terminal Central ORION** que simula um ambiente PowerShell real! Agora toda a investigação acontece através de comandos nativos em um terminal funcional.
+
+---
+
+Um jogo interativo de investigação baseado no misterioso caso real do "Homem de Taured" de 1954. Você é um agente da unidade ultra-secreta ORION, investigando um dos mistérios mais intrigantes do século XX através de um **terminal PowerShell completo**.
+
+## 🚀 NOVA FUNCIONALIDADE PRINCIPAL: TERMINAL CENTRAL
+
+### 🖥️ **Terminal PowerShell Nativo**
+- **Comandos Reais**: `ls`, `cd`, `cat`, `pwd`, `clear`, `echo`
+- **Navegação Autêntica**: Use comandos exatamente como em PowerShell real
+- **Histórico de Comandos**: Navegue com ↑/↓ pelos comandos anteriores
+- **Sistema de Arquivos**: Estrutura completa de pastas e arquivos
+
+### 📁 **Sistema de Arquivos Virtual Completo**
+- **📁 ferramentas/**: Analisador DNA, Scanner Digital, Detector de Anomalias, Gerador de Relatórios
+- **📁 locais/**: Aeroporto Haneda, Hotel Imperial, Europa 1954
+- **📁 logs/**: Investigação principal, Anomalias detectadas
+- **📁 investigacoes_salvas/**: Suas investigações em formato JSON
+- **📁 caderno_anotacoes/**: Editor visual de anotações pessoais
+
+### 🔧 **Comandos Especializados de Investigação**
+- `save-inv` - Salvar investigação completa com todas as pistas
+- `load-inv` - Listar e carregar investigações anteriores
+- `edit-notes` - Abrir editor visual de anotações com interface completa
+- `run <ferramenta>` - Executar ferramentas de análise científica
+- `help` - Ver todos os comandos disponíveis
+
+### 💾 **Persistência Total de Dados**
+- **LocalStorage Automático**: Todas anotações e progresso salvos
+- **Sistema de Backup**: Investigações exportadas em JSON
+- **Editor de Anotações**: Interface visual completa para documentar teorias
+- **Autossalvamento**: Nunca perca seu progresso
+
+### 🎯 **Como Usar o Terminal**
+```powershell
+# Comandos básicos de navegação
+ls                           # Listar pastas e arquivos
+cd ferramentas              # Navegar para pasta de ferramentas
+cat analisador_dna.exe      # Ver detalhes de uma ferramenta
+pwd                         # Ver localização atual
+
+# Comandos especializados
+edit-notes                  # Abrir editor de anotações
+save-inv                    # Salvar investigação atual
+run detector_anomalias.exe  # Executar análise de anomalias
+help                        # Ver todos os comandos
+```
+
+## ✨ FUNCIONALIDADES CLÁSSICAS MANTIDAS
 
 ### 🖱️ Cursor Customizado
 - Cursor brilhante em formato de seta cibernética
