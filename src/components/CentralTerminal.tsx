@@ -127,6 +127,33 @@ const initialFileSystem: { [key: string]: FileSystemNode } = {
         dateModified: '2024-06-12 16:00'
       }
     }
+  },
+  sobre_projeto: {
+    name: 'sobre_projeto',
+    type: 'directory',
+    children: {
+      'contribuir.txt': {
+        name: 'contribuir.txt',
+        type: 'file',
+        content: 'COMO CONTRIBUIR COM O PROJETO\n=============================\n\n💰 Qualquer valor doado ajuda a educar novos desenvolvedores em tecnologia!\n\n🏦 MÉTODOS TRADICIONAIS:\nPIX/PayPal: radiotatuapefm@gmail.com\n\n₿ CRIPTOMOEDAS:\nBitcoin: bc1qmjf00jqttk2kgemxtxh0hv4xp8fqztnn23cuc2\nEthereum: 0x7481B4591e7f0DFAD23b884E78C46F0c207a3E35\nLitecoin: ltc1qxytts52mykr2u83x6ghwllmu7d524ltt702mcc\n\n📞 CONTATO:\nWhatsApp: +55 11 97060-3441\nDesenvolvedor: Julio Campos Machado\nEspecialista em Física Quântica & Desenvolvimento\n\n🏢 EMPRESA:\n© 2024 Like Look Solutions. Todos os direitos reservados.\n\n🤝 Suas contribuições ajudam a manter este projeto educacional\ngratuito e a desenvolver novos conteúdos para a comunidade!\n\n🌟 Obrigado por jogar O Enigma de Taured! 🌟',
+        size: '1.1 KB',
+        dateModified: '2024-06-12 16:35'
+      },
+      'creditos.txt': {
+        name: 'creditos.txt',
+        type: 'file',
+        content: 'CRÉDITOS DO PROJETO\n==================\n\n👨‍💻 DESENVOLVEDOR PRINCIPAL:\nJulio Campos Machado\n- Especialista em Física Quântica\n- Desenvolvedor Full Stack\n- Designer de Experiência\n\n🔬 TECNOLOGIAS UTILIZADAS:\n- Next.js 14 (Framework React)\n- TypeScript (Tipagem estática)\n- Tailwind CSS (Estilização)\n- Google Gemini API (IA Assistente)\n- Web Audio API (Sistema de sons)\n\n🎮 SOBRE O JOGO:\n- Baseado no caso real de 1954\n- Terminal PowerShell funcional\n- Sistema de investigação imersivo\n- Conteúdo educacional gratuito\n\n📚 FONTE HISTÓRICA:\nCaso "Homem de Taured" - Aeroporto Haneda, Tóquio, 1954\nDocumentado em arquivos históricos e relatos oficiais\n\n❤️ Desenvolvido com amor para a comunidade de desenvolvedores',
+        size: '0.9 KB',
+        dateModified: '2024-06-12 16:35'
+      },
+      'readme.txt': {
+        name: 'readme.txt',
+        type: 'file',
+        content: 'TERMINAL CENTRAL ORION - README\n==============================\n\n🖥️ BEM-VINDO AO SISTEMA ORION!\n\nEste terminal simula um ambiente PowerShell completo para\ninvestigar o misterioso Caso Taured de 1954.\n\n👁️ COMANDOS BÁSICOS:\nls / dir     - Listar arquivos e pastas\ncd <pasta>   - Navegar para pasta\ncat <arq>    - Visualizar arquivo\npwd          - Mostrar localização atual\nclear        - Limpar terminal\nhelp         - Ver todos os comandos\n\n🔧 COMANDOS ESPECIAIS:\nsave-inv     - Salvar investigação\nload-inv     - Carregar investigação\nedit-notes   - Editor de anotações\nrun <tool>   - Executar ferramenta\n\n📁 ESTRUTURA DE PASTAS:\nferramentas/ - Ferramentas de análise\nlocais/      - Informações dos locais\nlogs/        - Registros da investigação\ninvestigacoes_salvas/ - Backups\ncaderno_anotacoes/    - Suas notas\nsobre_projeto/        - Informações do projeto\n\n🎯 OBJETIVO: Desvende o mistério de Taured!',
+        size: '1.0 KB',
+        dateModified: '2024-06-12 16:35'
+      }
+    }
   }
 }
 

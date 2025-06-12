@@ -290,3 +290,28 @@ Enquanto baseado em caso real, elementos ficcionais incluem:
 
 Para mais informações sobre o caso real, consulte a Enciclopédia in-game ou pesquise "Taured mystery 1954" para fontes históricas.
 
+---
+
+## 💰 Como Contribuir
+
+**Qualquer valor doado ajuda a educar novos desenvolvedores em tecnologia!**
+
+### 🏦 Métodos Tradicionais
+- **PIX/PayPal**: radiotatuapefm@gmail.com
+
+### ₿ Criptomoedas
+- **Bitcoin**: `bc1qmjf00jqttk2kgemxtxh0hv4xp8fqztnn23cuc2`
+- **Ethereum**: `0x7481B4591e7f0DFAD23b884E78C46F0c207a3E35`
+- **Litecoin**: `ltc1qxytts52mykr2u83x6ghwllmu7d524ltt702mcc`
+
+### 📞 Contato
+- **WhatsApp**: +55 11 97060-3441
+- **Desenvolvedor**: Julio Campos Machado
+- **Empresa**: © 2024 Like Look Solutions. Todos os direitos reservados.
+
+---
+
+🤝 **Apoie o projeto:** Suas contribuições ajudam a manter este projeto educacional gratuito e a desenvolver novos conteúdos para a comunidade de desenvolvedores.
+
+⭐ **Agradecimentos:** Obrigado por jogar O Enigma de Taured! Desenvolvido com ❤️ para a comunidade de desenvolvedores.
+

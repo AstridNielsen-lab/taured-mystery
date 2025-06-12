@@ -10,6 +10,7 @@ import { InvestigationLog } from './InvestigationLog'
 import { TerminalOutput } from './TerminalOutput'
 import { CentralTerminal } from './CentralTerminal'
 import { AIAssistant } from './AIAssistant'
+import { Footer } from './Footer'
 import { getAvailableLocations, getAvailableTools, gameData, formatLocation } from '@/utils/gameData'
 import { generateReport, formatReportForDisplay, generateTauredEncyclopedia } from '@/utils/reportGenerator'
 import { ToolData, Location, Investigation } from '@/types/game'
@@ -203,6 +204,9 @@ export function GameInterface() {
       
       {/* AI Assistant */}
       <AIAssistant gameState={gameState} discoveredClues={player.discoveredClues} />
+      
+      {/* Footer com informações de contribuição */}
+      <Footer />
     </div>
   )
 }
